@@ -25,13 +25,14 @@ test('fetch', function (t) {
 })
 
 test('fetch without state', function (t) {
+  t.plan(1)
+
   fetch({
     baseUrl: 'http://example.com'
   }, 'path')
 
   .then(t.fail.bind(t, 'Must reject'))
-  .then(function (error) {
+  .catch(function (error) {
     t.equal(error.name, 'UnauthenticatedError', 'rejects with UnauthenticatedError error')
   })
-  t.end()
 })
